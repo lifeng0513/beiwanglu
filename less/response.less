@@ -1,0 +1,127 @@
+@import "var";
+@import "base";
+*[text-l]{
+  text-align: left;
+}
+*[text-c]{
+  text-align:center;
+}
+*[text-r]{
+  text-align:right;
+}
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;padding:0;
+}
+.public{
+  width:@num1*1px-100px;
+  margin:0 auto;
+  //border: 1px solid red;
+  .clear();
+  &>.row{
+    width:100%;
+    .clear();
+  }
+  &-fluid{
+    width:100%;
+    .clear();
+    &>.row{
+      width:100%;
+      .clear();
+    }
+  }
+}
+.container {
+  @media screen and (max-width: @num1) {
+    .public;
+      & > .row > .col-s-v {
+        display: block;
+      }
+      & > .row > .col-s-h {
+        display: none;
+      }
+      &-fluid > .row > .col-s-v {
+        display: block;
+      }
+      &-fluid > .row > .col-s-h {
+        display: none;
+      }
+
+  }
+}
+.container{
+  .response(s);
+}
+
+.response(@type,@i:1)when(@i<=@col){
+  &>.row>.col-@{type}-@{i}{
+    float:left;width:@i/@col*100%;
+  }
+  &-fluid>.row>.col-@{type}-@{i}{
+    float:left;width:@i/@col*100%;
+  }
+  &>.row>.col-left-@{type}-@{i}{
+    position: relative;left:@i/@col*-100%;
+  }
+  &>.row>.col-right-@{type}-@{i}{
+    position: relative;left:@i/@col*100%;
+  }
+  &-fluid>.row>.col-left-@{type}-@{i}{
+    position: relative;left:@i/@col*-100%;
+  }
+  &-fluid>.row>.col-right-@{type}-@{i}{
+    position: relative;left:@i/@col*100%;
+  }
+  .response(@type,@i+1);
+}
+.container{
+  @media screen and (min-width: @num1)and(max-width: @num2){
+    .public;
+    width:@num1;
+      &>.row>.col-m-v{
+        display: block;
+      }
+      &>.row>.col-m-h{
+        display: none;
+      }
+      &-fluid>.row>.col-m-v{
+        display: block;
+      }
+      &-fluid>.row>.col-m-h{
+        display: none;
+      }
+    .response(m);
+    }
+
+}
+@media screen and (min-width: @num2){
+  .public;
+    width:@num2;
+  .container{
+    &>.row>.col-l-v{
+      display: block;
+    }
+    &>.row>.col-l-h{
+      display: none;
+    }
+    &-fluid>.row>.col-l-v{
+      display: block;
+    }
+    &-fluid>.row>.col-l-h{
+      display: none;
+    }
+    .response(l);
+  }
+
+}
+.clear(){
+&:before,&:after{
+  content: "";
+  display: block;
+}
+&:after{
+  clear: both;
+}
+}

@@ -1,0 +1,74 @@
+@r:30;
+@r1:10;
+@a:0;
+@a1:0;
+@p:3;
+@p1:6;
+@num:360/@p;
+
+.round(@i:0)when(@i<=@num){
+  @select:100/@num*@i*1%;
+  @a:@p*@i;
+  @{select}{
+    transform:translate(cos(@a*PI()/180)*@r*1px,sin(@a*PI()/180)*@r*1px);
+  }
+  .round(@i+1);
+}
+@keyframes round {
+  .round();
+}
+*[data-a*=animation-round]{
+  animation:round 3s linear infinite;
+}
+
+.quxian(@i:0)when(@i<=@num){
+  @select:100/@num*@i*1%;
+  @a:@p*@i;
+  @a1:@p1*@i;
+  @{select}{
+    transform:translate(cos(@a*PI()/180)*@r*1px,sin(@a1*PI()/180)*@r*1px);
+  }
+  .quxian(@i+1);
+}
+@keyframes quxian {
+  .quxian();
+}
+*[data-a*=animation-quxian]{
+  animation:quxian 3s linear infinite;
+}
+@num1:1;
+.rotate(@i:0)when(@i<=@num1){
+  @select:100/@num1*@i*1%;
+  @a:@p*@i;
+  @a1:@p1*@i;
+  @{select}{
+    transform:rotateZ(360deg);
+  }
+  .rotate(@i+1);
+}
+@keyframes rotate {
+  .rotate();
+}
+*[data-a*=animation-rotate]{
+  animation:rotate 3s linear infinite;
+}
+@num2:10;
+.create(@i:0) when (@i<=@num2){}
+@keyframes create {
+  .create();
+}
+*[data-a*=animation-create]{
+  animation:create 1s linear infinite;
+}
+/*闪动*/
+@keyframes sd {
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+*[data-a=animate-sd]{
+  animation:sd 1s linear alternate 3;
+}
